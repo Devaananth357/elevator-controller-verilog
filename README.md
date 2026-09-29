@@ -1,96 +1,30 @@
-\# Elevator Controller in Verilog
+# Elevator Controller in Verilog
 
+I built this 8-floor elevator controller to practise designing an FSM in Verilog and taking an RTL project through simulation, synthesis, and implementation in Vivado.
 
+The controller stores floor requests, travels toward requested floors, stops when it reaches one, and opens the door for a set time. It also detects a new button press, so holding a button does not repeatedly add the same request.
 
-A parameterized elevator controller designed in Verilog and implemented using Vivado. The controller handles multiple floor requests, remembers pending requests, and controls movement and door timing.
+**Design:** `elevator_controller.v`  
+**Testbench:** `elevator_controller_tb.v`  
+**Timing constraint:** `Timing_constraints.xdc`  
+**Tool and target:** Vivado 2026.1, Artix-7
 
+The default design has 8 floors. `N`, `Travel_Cycle`, and `Open_Door_cycle` can be changed in the module parameters. Floor 0 is the starting floor, and each bit of `floor_request` represents one floor.
 
+**Simulation**
 
-\## Features
+I tested requests at multiple floors and checked how the elevator moves between them. I also tested a button held high to check that it is treated as one press.
 
+![Multiple floor requests in simulation](Images/fig_1a_multi_floor_waveform.jpg)
 
+![Held button test](Images/fig_1b_held_button_waveform.jpg)
 
-\- Configurable number of floors (`N`)
+**Implementation**
 
-\- Pending floor request storage
+The `Images` folder contains the simulation console, synthesized schematic, FPGA device views, resource utilization, timing summary, and power analysis screenshots.
 
-\- Direction-based travel
+![Implemented device](Images/fig_6_implemented_device.jpg)
 
-\- Configurable travel and door-open cycles
+![Timing summary](Images/fig_7_timing_summary.jpg)
 
-\- Button edge detection so a held button is counted once
-
-\- Simulation, synthesis, implementation, timing, and power analysis
-
-
-
-\## Files
-
-
-
-\- `elevator\_controller.v` — controller RTL
-
-\- `elevator\_controller\_tb.v` — simulation testbench
-
-\- `Timing\_constraints.xdc` — clock timing constraint
-
-\- `Images/` — simulation and Vivado result screenshots
-
-
-
-\## Parameters
-
-
-
-| Parameter         | Default | Purpose          		 |
-
-| ----------------- | ------- | -------------------------------- |
-
-| `N`               | 8       | Number of floors                 |
-
-| `Open\_Door\_cycle` | 3       | Door-open timer setting          |
-
-| `Travel\_Cycle`    | 4       | Clock cycles per floor of travel |
-
-
-
-Floors are numbered from `0` to `N-1`. Each bit of `floor\_request` corresponds to one floor.
-
-
-
-\## How to run
-
-
-
-1\. Create a Vivado RTL project and add `elevator\_controller.v` as a design source.
-
-2\. Add `elevator\_controller\_tb.v` as a simulation source.
-
-3\. Run behavioral simulation with `elevator\_controller\_tb` as the simulation top.
-
-4\. Add `Timing\_constraints.xdc`, select your target FPGA, and run synthesis and implementation.
-
-
-
-\## Results
-
-
-
-!\[Multi-floor simulation waveform](Images/fig\_1a\_multi\_floor\_waveform.jpg)
-
-
-
-!\[Held-button simulation waveform](Images/fig\_1b\_held\_button\_waveform.jpg)
-
-
-
-!\[Synthesis schematic](Images/fig\_3\_synthesized\_schematic.jpg)
-
-
-
-!\[Timing summary](Images/fig\_7\_timing\_summary.jpg)
-
-
-
-!\[Power analysis](Images/fig\_8\_power\_analysis.jpg)
-
+To run the project, add the Verilog files and XDC constraint to a Vivado project. Set `elevator_controller_tb` as the simulation top for behavioral simulation.
