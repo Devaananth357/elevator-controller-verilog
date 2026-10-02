@@ -1,18 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Engineer: Devaananth
-// 
-// Create Date: 28.09.2026 18:33:20
-// Design Name: elevator_controller
-// Module Name: elevator_controller
-// Project Name: Elevator
-// Target Devices: Artix-7 
-// Tool Versions: Vivado v2026.1 (64-bit)
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module elevator_controller#(
     parameter N = 8,
