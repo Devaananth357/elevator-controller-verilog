@@ -1,17 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Engineer: Devaananth
-//
-// Create Date: 29.09.2026 20:07:23
-// Design Name: elevator_controller_tb
-// Module Name: elevator_controller_tb
-// Project Name: Elevator Testbench
-// Target Devices: Artix-7
-// Tool Versions: Vivado v2026.1 (64-bit)
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module elevator_controller_tb;
     reg clk = 0;
